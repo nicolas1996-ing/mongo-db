@@ -1,0 +1,35 @@
+use('platzi_store')
+db.products.updateOne(
+    {
+        _id: ObjectId("63e4eca7f54e45c567e0b34e")
+    },
+    {
+        $set: {
+            storesIds: [
+                ObjectId("63e4ee9936b89ce68bc7750d")
+            ]
+        }
+    }
+)
+
+use('platzi_store')
+db.products.find({_id: ObjectId("63e4eca7f54e45c567e0b34e")})
+
+
+// agregate ... 
+use('platzi_store')
+db.products.aggregate(
+    {
+        $lookup: {
+          from: "stores",
+          localField: "storesIds",
+          foreignField: "_id",
+          as: "stores"
+        }
+    },
+    {
+        $match: {
+          _id: ObjectId("63e4eca7f54e45c567e0b34e")
+        }
+    }
+)

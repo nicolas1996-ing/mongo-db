@@ -1,0 +1,12 @@
+
+
+use('platzi_store')
+db.products.find().projection({_id:1})
+// 63e4eca7f54e45c567e0b34e
+
+use('platzi_store')
+db.stores.find().projection({_id:1})
+// 63e4ee9936b89ce68bc7750d
+
+
+

@@ -1,0 +1,26 @@
+// one order has many products [items] 
+// one-to-n nested [embebida]
+
+use('platzi_store')
+db.orders.insertOne({
+    userId: ObjectId("63e251f5400dd12e3d87c045"),
+    date: new Date(Date.now()),
+    items: [
+        {
+            name: "product-one",
+            price: 12,
+            amount: 1,
+            productId: ObjectId("63e4eca7f54e45c567e0b34e")
+        },
+         {
+            name: "product-two",
+            price: 20,
+            amount: 3,
+            productId: ObjectId("63e4eca7f54e45c567e0b34f")
+        },
+
+    ]
+})
+
+use('platzi_store')
+db.orders.find({_id: ObjectId("63ea337d8878353e5ec3c411")})

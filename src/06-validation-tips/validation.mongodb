@@ -1,0 +1,43 @@
+use('platzi_store')
+db.getCollectionInfos() // estructura bd
+
+// update schema without clean current information... 
+// must send all of validators field ... 
+
+db.runCommand(
+    {
+        collMod: 'customers',
+        validator:{
+            $jsonSchema:{
+                bsonType: 'object',
+                required: ['email','password', 'role'],
+                additionalProperties: false, // only allow other props...
+                properties:{
+                    name:{
+                        bsonType: 'string'
+                    },
+                    last_name:{
+                        bsonType: 'string'
+                    },
+                    password: {
+                        bsonType:'string'
+                    },
+                    email:{
+                        bsonType: 'string'
+                    },
+                    age:{
+                        bsonType: 'number',
+                        minimum: 18,
+                        maximum: 99
+                    },
+                    isSingle:{
+                        bsonType: 'bool',
+                    },
+                    role: {
+                        enum: ['customer', 'seller', 'admin']
+                    }
+                }   
+            }
+    }
+    }
+)

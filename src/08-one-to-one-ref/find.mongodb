@@ -1,0 +1,22 @@
+// query one ...
+use('platzi_store')
+db.stores.find()
+
+// query two ...
+use('platzi_store')
+db.stores_details.find()
+
+// que three ...
+// one-to-one referenced 
+// add one-to-one relation to store entity 
+use('platzi_store')
+db.stores.aggregate(
+    {
+        $lookup: {
+          from: 'stores_details',
+          localField: 'storeId',
+          foreignField: 'storeId',
+          as: 'details'
+        }
+    }
+)

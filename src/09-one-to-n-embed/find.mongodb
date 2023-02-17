@@ -1,0 +1,52 @@
+// query one ...
+use('platzi_store')
+db.orders.find()
+
+use('platzi_store')
+db.orders.find().count()
+
+// order with two items 
+use('platzi_store')
+db.orders.find({items:{$size: 2}})
+
+// relation one-to-n referenced 
+use('platzi_store')
+db.orders.find({userId: ObjectId("63e251ae789973b7355724b0")})
+
+// users 
+use('platzi_store')
+db.users.find()
+
+// agregate para todos los docs 
+use('platzi_store')
+db.orders.aggregate(
+    {
+        $lookup: { // get all of properties of userId 
+          from: 'users',
+          localField: 'userId', // userId[orders] === _id [users]
+          foreignField: '_id',
+          as: 'user'
+        }
+    }
+)
+
+// agregate para algunos docs
+use('platzi_store')
+db.orders.aggregate(
+    {
+        $lookup: {
+          from: 'users',
+          localField: 'userId', // userId[orders] === _id [users]
+          foreignField: '_id',
+          as: 'user'
+        }
+    },
+    {
+       // solo consulto los documentos que cumplan la condicion
+       $match: {
+         _id: ObjectId("63e39821dcf3cec5852e9122")
+       }
+    }
+)
+
+

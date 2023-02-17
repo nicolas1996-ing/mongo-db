@@ -1,0 +1,21 @@
+// add dinamicamente un producto a la orden: 63ea34dd54a22e03417b35bc
+use('platzi_store')
+db.orders.updateOne(
+    {_id: ObjectId("63ea34dd54a22e03417b35bc")}, 
+    {
+        $push: {
+            items:{
+                name: "product-two",
+                price: 20,
+                amount: 2,
+                productId: ObjectId("63e4eca7f54e45c567e0b34f")
+            }
+        },
+        // el total se va calculando dianamicamente 
+        $inc: {
+            total: 20*2
+        }
+})
+
+use('platzi_store')
+db.orders.findOne({_id: ObjectId("63ea34dd54a22e03417b35bc")})

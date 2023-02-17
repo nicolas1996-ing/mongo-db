@@ -1,0 +1,11 @@
+// query one ...
+use('platzi_store')
+db.users.find({
+    "address.city": "cali"
+}).count()
+
+// query two ...
+use('platzi_store')
+db.users.find({
+    "address.city": "cali"
+})

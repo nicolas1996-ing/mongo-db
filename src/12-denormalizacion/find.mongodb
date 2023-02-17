@@ -1,0 +1,10 @@
+// query one ...
+use('platzi_store')
+db.products.find()
+
+use('platzi_store')
+db.products.find({size: {$size: 2}})
+
+
+use('platzi_store')
+db.orders.find()

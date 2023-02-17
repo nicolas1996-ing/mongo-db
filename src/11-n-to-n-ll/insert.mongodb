@@ -1,0 +1,23 @@
+// one order has many products [items] 
+// one-to-n nested [embebida]
+
+use('platzi_store')
+db.products.insertMany([
+    {
+        name: 'product-one',
+        size: ['L','M'],
+        price: 12
+    },
+    {
+        name: 'product-two',
+        size: ['S','M'],
+        price: 20
+    },
+    {
+        name: 'product-three',
+        size: ['XL','M'],
+        price: 32
+    }
+
+])
+

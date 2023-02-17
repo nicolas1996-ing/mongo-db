@@ -1,0 +1,16 @@
+use('platzi_store')
+db.users.insertOne({
+    last_name: 'toro',
+    email: 'alejandra@gmail.com',
+    password: 'toro1234',
+    address: {
+        street: "call 10 carrera 10",
+        city: "cali",
+        zip: "11019"
+    },
+    shippingAddress: {
+        street: "call 10 carrera 10",
+        city: "pereira",
+        zip: "12811"
+    }
+})

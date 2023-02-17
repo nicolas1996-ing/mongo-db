@@ -1,0 +1,40 @@
+// one order has many products [items] 
+// one-to-n nested [embebida]
+
+use('platzi_store')
+db.products.find()
+
+
+use('platzi_store')
+db.stores.insertMany([
+    {
+        name: 'store-one',
+        productsIds: [
+            ObjectId("63e4eca7f54e45c567e0b34e"),
+            ObjectId("63e4eca7f54e45c567e0b34f")
+        ]
+    },
+    {
+        name: 'store-two',
+        productsIds: [
+            ObjectId("63e4eca7f54e45c567e0b34f"),
+            ObjectId("63e4eca7f54e45c567e0b350")
+        ]
+    }
+])
+
+use('platzi_store')
+db.stores.find()
+
+// get info about products 
+use('platzi_store')
+db.stores.aggregate(
+    {
+        $lookup: { // get all of properties of userId 
+          from: 'products',
+          localField: 'productsIds', // userId[orders] === _id [users]
+          foreignField: '_id',
+          as: 'products'
+        }
+    }
+)
